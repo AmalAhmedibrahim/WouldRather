@@ -38,10 +38,12 @@ class QuestionPage extends Component {
     render() {
         debugger;
         const { question, author, answerd, userAnswer } = this.props;
-
+        if (!question) {
+            return <Redirect to="/notfound" />
+        }
         const total = question.optionOne.votes.length + question.optionTwo.votes.length;
-        const optionOnePercent = Math.round(question.optionOne.votes.length / total) * 100;
-        const optionTwoPercent = Math.round(question.optionTwo.votes.length / total) * 100;
+        const optionOnePercent = Math.round((question.optionOne.votes.length / total ) * 100);
+        const optionTwoPercent = Math.round((question.optionTwo.votes.length / total)* 100) ;
 
         const optionOneValue = question.optionOne.text;
         const optionTwoValue = question.optionTwo.text;
